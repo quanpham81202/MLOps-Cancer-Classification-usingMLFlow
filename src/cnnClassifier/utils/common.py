@@ -45,6 +45,19 @@ def load_json(path: Path) -> ConfigBox:
     return ConfigBox(content)
 
 @ensure_annotations
+def get_size(path: Path) -> str:
+    """get size in KB
+
+    Args:
+        path (Path): path of the file
+
+    Returns:
+        str: size in KB
+    """
+    size_in_kb = round(os.path.getsize(path)/1024)
+    return f"~ {size_in_kb} KB"
+
+@ensure_annotations
 def save_bin(data: Any, path: Path):
     joblib.dump(value=data, filename=path)
     logger.info(f"binary file saved at: {path}")
